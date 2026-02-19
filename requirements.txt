@@ -25,3 +25,8 @@ ultralytics>=8.2.0
 # Утилиты
 rich>=13.7.0         
 pyyaml>=6.0.1
+
+# PyTorch nightly (Blackwell support)
+torch==2.12.0.dev20260219+cu128 --index-url https://download.pytorch.org/whl/nightly/cu128
+torchvision==0.27.0.dev20260219+cu128 --index-url https://download.pytorch.org/whl/nightly/cu128
+torchaudio==2.12.0.dev20260219+cu128 --index-url https://download.pytorch.org/whl/nightly/cu128
