@@ -1,0 +1,154 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+pip-log.txt
+pip-delete-this-directory.txt
+.pytest_cache/
+.coverage
+coverage.xml
+*.egg-info/
+dist/
+build/
+eggs/
+parts/
+sdist/
+var/
+*.egg
+*.eggs/
+.installed.cfg
+lib64/
+*.manifest
+*.spec
+
+# Environments
+.env
+.venv
+venv/
+ENV/
+env/
+*.env.local
+*.env.development.local
+*.env.test.local
+*.env.production.local
+
+# IDE / Editor
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# Jupyter / Notebooks
+.ipynb_checkpoints/
+*.ipynb_checkpoints/
+*.nbconvert*
+
+# Data & large files (никогда не коммитим!)
+data/
+*.csv
+*.tsv
+*.jsonl
+*.json.gz
+*.parquet
+*.hdf5
+*.h5
+*.pickle
+*.pkl
+*.joblib
+*.npy
+*.npz
+*.pt
+*.pth
+*.ckpt
+*.onnx
+*.engine             # TensorRT
+runs/
+weights/
+models/
+checkpoints/
+output/
+logs/
+lightning_logs/
+wandb/
+tensorboard/
+mlruns/
+results/
+predictions/
+*.zip
+*.tar
+*.tar.gz
+*.tgz
+
+# ClearML specific
+clearml.conf
+clearml*
+*.clearml*
+clearml-agent*
+
+# Hydra outputs (по умолчанию hydra создаёт их в ./outputs и ./multirun)
+outputs/
+multirun/
+.hydra/
+
+# PyTorch Lightning / Lightning Fabric
+*.ckpt
+lightning_logs/
+
+# Ultralytics / YOLO
+runs/detect/
+runs/segment/
+runs/classify/
+yolo*.pt
+best.pt
+last.pt
+*.yaml  # иногда люди коммитят кастомные датасет.yaml — но лучше в configs/
+
+# Docker
+docker-compose.override.yml
+*.dockerignore
+
+# Testing / temp
+htmlcov/
+.tox/
+.nox/
+.coverage.*
+.cache/
+nosetests.xml
+coverage.xml
+*,cover
+.hypothesis/
+.pypirc
+.pdm.toml
+pdm.lock
+
+# macOS / Windows junk
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+.fseventsd
+~$*
+
+# Profiler / debug
+prof/
+callgrind.out.*
+*.prof
+*.cProfile
+
+# Misc ML tools
+*.mlmodel        # CoreML
+*.tflite
+*.pb             # TensorFlow frozen graph
+*.saved_model
+*.mlpackage
