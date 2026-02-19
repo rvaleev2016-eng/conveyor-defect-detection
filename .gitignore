@@ -1,202 +1,154 @@
-# Byte-compiled / optimized / DLL files
+# Python
 __pycache__/
 *.py[cod]
 *$py.class
-
-# C extensions
 *.so
-
-# Distribution / packaging
 .Python
-build/
-develop-eggs/
+pip-log.txt
+pip-delete-this-directory.txt
+.pytest_cache/
+.coverage
+coverage.xml
+*.egg-info/
 dist/
-downloads/
+build/
 eggs/
-.eggs/
-lib/
-lib64/
 parts/
 sdist/
 var/
-wheels/
-share/python-wheels/
-*.egg-info/
-.installed.cfg
 *.egg
-MANIFEST
-
-# PyInstaller
-#  Usually these files are written by a python script from a template
-#  before PyInstaller builds the exe, so as to inject date/other infos into it.
+*.eggs/
+.installed.cfg
+lib64/
 *.manifest
 *.spec
 
-# Installer logs
-pip-log.txt
-pip-delete-this-directory.txt
-
-# Unit test / coverage reports
-htmlcov/
-.tox/
-.nox/
-.coverage
-.coverage.*
-.cache
-nosetests.xml
-coverage.xml
-*.cover
-*.py.cover
-.hypothesis/
-.pytest_cache/
-cover/
-
-# Translations
-*.mo
-*.pot
-
-# Django stuff:
-*.log
-local_settings.py
-db.sqlite3
-db.sqlite3-journal
-
-# Flask stuff:
-instance/
-.webassets-cache
-
-# Scrapy stuff:
-.scrapy
-
-# Sphinx documentation
-docs/_build/
-
-# PyBuilder
-.pybuilder/
-target/
-
-# Jupyter Notebook
-.ipynb_checkpoints/
-
-# IPython
-profile_default/
-ipython_config.py
-
-# pyenv
-#   For a library or package, you might want to ignore these files since the code is
-#   intended to run in multiple environments; otherwise, check them in:
-# .python-version
-
-# pipenv
-#   According to pypa/pipenv#598, it is recommended to include Pipfile.lock in version control.
-#   However, in case of collaboration, if having platform-specific dependencies or dependencies
-#   having no cross-platform support, pipenv may install dependencies that don't work, or not
-#   install all needed dependencies.
-#Pipfile.lock
-
-# poetry
-#   Similar to Pipfile.lock, it is recommended to include poetry.lock in version control.
-#poetry.lock
-
-# pdm
-#   Similar to Pipfile.lock, it is recommended to include pdm.lock in version control.
-#pdm.lock
-#   pdm stores project-wide configurations in .pdm.toml, but .pdm-python is for local Python version.
-.pdm-python
-.pdm-build/
-
 # Environments
 .env
-.envrc
 .venv
-env/
 venv/
 ENV/
-env.bak/
-venv.bak/
+env/
+*.env.local
+*.env.development.local
+*.env.test.local
+*.env.production.local
 
-# Spyder project settings
-.spyderproject
-.spyproject
+# IDE / Editor
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
 
-# Rope project settings
-.ropeproject
+# Jupyter / Notebooks
+.ipynb_checkpoints/
+*.ipynb_checkpoints/
+*.nbconvert*
 
-# mkdocs documentation
-/site
-
-# mypy
-.mypy_cache/
-.dmypy.json
-dmypy.json
-
-# Pyre type checker
-.pyre/
-
-# Pytype static type analyzer
-.pytype/
-
-# Cython debug symbols
-cython_debug/
-
-# PyCharm / JetBrains 
-# .idea/
-
-# Visual Studio Code 
-# .vscode/
-
-# Ruff
-.ruff_cache/
-
-# ────────────────────────────────────────────────
-# Специально для ML / Computer Vision / Data Science проектов
-# ────────────────────────────────────────────────
-
-# Большие модели и чекпоинты 
-*.pth
-*.pt
-*.ckpt
-*.safetensors
-*.h5
-*.keras
-*.onnx
-*.pb
-*.tflite
-*.engine  # TensorRT
-
-# Данные (raw / processed / большие датасеты)
+# Data & large files (никогда не коммитим!)
 data/
-dataset/
-datasets/
-large_data/
-downloads/
+*.csv
+*.tsv
+*.jsonl
+*.json.gz
+*.parquet
+*.hdf5
+*.h5
+*.pickle
+*.pkl
+*.joblib
+*.npy
+*.npz
+*.pt
+*.pth
+*.ckpt
+*.onnx
+*.engine             # TensorRT
+runs/
+weights/
+models/
+checkpoints/
+output/
+logs/
+lightning_logs/
+wandb/
+tensorboard/
+mlruns/
+results/
+predictions/
 *.zip
 *.tar
 *.tar.gz
-*.7z
+*.tgz
 
-# Локальные результаты экспериментов
-runs/
-wandb/
+# ClearML specific
+clearml.conf
+clearml*
+*.clearml*
+clearml-agent*
+
+# Hydra outputs (по умолчанию hydra создаёт их в ./outputs и ./multirun)
+outputs/
+multirun/
+.hydra/
+
+# PyTorch Lightning / Lightning Fabric
+*.ckpt
 lightning_logs/
-mlruns/
-tensorboard/
 
-# Кэш предобработки 
-cache/
-preprocessed/
-*.npy
-*.npz
-*.pkl   # кроме маленьких, но лучше игнорировать все
-*.joblib
+# Ultralytics / YOLO
+runs/detect/
+runs/segment/
+runs/classify/
+yolo*.pt
+best.pt
+last.pt
+*.yaml  # иногда люди коммитят кастомные датасет.yaml — но лучше в configs/
 
-# Секреты и API-ключи
-*.env
-api_key.txt
-secrets.json
-wandb.key
+# Docker
+docker-compose.override.yml
+*.dockerignore
 
-# Локальные логи / временные файлы
-*.log
-tmp/
-temp/
+# Testing / temp
+htmlcov/
+.tox/
+.nox/
+.coverage.*
+.cache/
+nosetests.xml
+coverage.xml
+*,cover
+.hypothesis/
+.pypirc
+.pdm.toml
+pdm.lock
+
+# macOS / Windows junk
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+.fseventsd
+~$*
+
+# Profiler / debug
+prof/
+callgrind.out.*
+*.prof
+*.cProfile
+
+# Misc ML tools
+*.mlmodel        # CoreML
+*.tflite
+*.pb             # TensorFlow frozen graph
+*.saved_model
+*.mlpackage
