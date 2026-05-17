@@ -152,3 +152,7 @@ callgrind.out.*
 *.pb             # TensorFlow frozen graph
 *.saved_model
 *.mlpackage
+models/*.pth
+__pycache__/
+*.pyc
+.DS_Store
