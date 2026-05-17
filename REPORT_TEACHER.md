@@ -61,8 +61,6 @@
 
 ## 6. Визуальные результаты
 
-Для показа преподавателю подготовлены изображения:
-
 - [example_01.png](/Users/valeevrustemrafailevic/Projects/conveyor-defect-detection/results/teacher_review/bottle/examples/example_01.png)
 - [example_02.png](/Users/valeevrustemrafailevic/Projects/conveyor-defect-detection/results/teacher_review/bottle/examples/example_02.png)
 - [example_03.png](/Users/valeevrustemrafailevic/Projects/conveyor-defect-detection/results/teacher_review/bottle/examples/example_03.png)
