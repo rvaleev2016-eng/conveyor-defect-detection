@@ -1,0 +1,17 @@
+image_name,defect_type,predicted_defect_ratio
+005.png,contamination,0.198547
+020.png,contamination,0.2211
+013.png,broken_small,0.057251
+004.png,contamination,0.022202
+014.png,contamination,0.010208
+015.png,broken_large,0.149017
+008.png,broken_large,0.169937
+019.png,broken_small,0.109406
+019.png,contamination,0.027405
+010.png,broken_small,0.0728
+003.png,good,0.007721
+012.png,broken_small,0.116394
+000.png,good,0.034439
+007.png,contamination,0.078201
+008.png,good,0.008362
+012.png,broken_large,0.125275

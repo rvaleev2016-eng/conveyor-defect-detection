@@ -1,0 +1,9 @@
+category,model_type,dice,iou,train_images,val_images
+bottle,per-category,0.606644,0.521746,67,16
+capsule,per-category,0.178571,0.178571,106,26
+metal_nut,per-category,0.287587,0.228832,92,23
+pill,per-category,0.466299,0.359749,134,33
+bottle,all-in-one,0.1875,0.1875,399,16
+capsule,all-in-one,0.178571,0.178571,399,26
+metal_nut,all-in-one,0.125,0.125,399,23
+pill,all-in-one,0.166667,0.166667,399,33

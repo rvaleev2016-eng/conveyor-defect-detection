@@ -1,0 +1,6 @@
+model_name,training_mode,best_epoch,best_validation_error,stopped_epoch
+bottle,per-category,10,0.56177,12
+capsule,per-category,12,0.798049,12
+metal_nut,per-category,11,0.35059,12
+pill,per-category,9,0.643102,12
+all_in_one,all-in-one,4,0.874632,9

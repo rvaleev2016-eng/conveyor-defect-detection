@@ -1,0 +1,17 @@
+image_name,defect_type,mask
+005.png,contamination,yes
+020.png,contamination,yes
+013.png,broken_small,yes
+004.png,contamination,yes
+014.png,contamination,yes
+015.png,broken_large,yes
+008.png,broken_large,yes
+019.png,broken_small,yes
+019.png,contamination,yes
+010.png,broken_small,yes
+003.png,good,no
+012.png,broken_small,yes
+000.png,good,no
+007.png,contamination,yes
+008.png,good,no
+012.png,broken_large,yes

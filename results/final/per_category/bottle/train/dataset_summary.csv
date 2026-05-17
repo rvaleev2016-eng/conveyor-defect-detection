@@ -1,0 +1,5 @@
+defect_type,images
+broken_large,20
+broken_small,22
+contamination,21
+good,20

@@ -1,0 +1,4 @@
+metric,value,explanation
+Dice,0.370195,Overlap between predicted mask and ground-truth mask. Closer to 1 is better.
+IoU,0.27804,Intersection over Union for segmentation masks. Closer to 1 is better.
+Threshold,0.5,Probability cutoff used to convert the predicted map into a binary mask.

@@ -1,0 +1,7 @@
+{
+  "category": "bottle",
+  "best_threshold": 0.7,
+  "best_dice": 0.565562,
+  "best_iou": 0.452286,
+  "curated_examples_dir": "results/quick_improvements/bottle/curated_examples"
+}

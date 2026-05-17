@@ -1,0 +1,3 @@
+category,training_mode,dice,iou,conclusion
+bottle,отдельно,0.606644,0.521746,лучший результат для bottle
+bottle,общее,0.1875,0.1875,хуже лучшего результата
