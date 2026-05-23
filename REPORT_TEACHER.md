@@ -1,83 +1,102 @@
 # Комментарии По Замечаниям Преподавателя
 
-## 1. Валидационная ошибка добавлена
+## 1. Валидационная ошибка и число эпох
 
-В проекте теперь явно считается `validation error` после каждой эпохи.
+В проекте `validation error` считается после каждой эпохи и используется как основной критерий выбора лучшей модели.
 
 Где смотреть:
 
-- [training_history.csv](/Users/valeevrustemrafailevic/Projects/conveyor-defect-detection/results/teacher_review/bottle/training_history.csv)
-- [training_curve.png](/Users/valeevrustemrafailevic/Projects/conveyor-defect-detection/results/teacher_review/bottle/training_curve.png)
-- [validation_error_curve.png](/Users/valeevrustemrafailevic/Projects/conveyor-defect-detection/results/teacher_review/bottle/validation_error_curve.png)
+- [validation_error_epochs_ru.png](/Users/valeevrustemrafailevic/Projects/conveyor-defect-detection/results/teacher_revision/training_graphs/validation_error_epochs_ru.png)
+- [validation_epoch_argument.csv](/Users/valeevrustemrafailevic/Projects/conveyor-defect-detection/results/teacher_revision/report_data/validation_epoch_argument.csv)
+- [training_history.csv](/Users/valeevrustemrafailevic/Projects/conveyor-defect-detection/results/teacher_revision/sgd_bottle/bottle/training_history.csv)
 
-`validation error` в таблице и есть контрольная ошибка на валидации.
+Актуальный итог по улучшенной `bottle`-модели:
 
-## 2. Остановка обучения при росте ошибки
+- `best_epoch = 11`
+- `best_val_loss = 0.380891`
 
-Используются два механизма:
+Это означает, что модель выбирается не по последней эпохе, а по минимальной ошибке на validation.
 
-- `ReduceLROnPlateau`: если валидационная ошибка ухудшается, уменьшается `learning rate`
-- `Early stopping`: если улучшения нет несколько эпох подряд, обучение останавливается
+## 2. Почему threshold не главный аргумент
 
-Это нужно, чтобы не дообучать модель в момент переобучения.
+`Threshold` относится к постобработке вероятностной карты модели.
 
-## 3. Почему одной BCE недостаточно
+Поэтому в проекте он вынесен в отдельное приложение:
 
-Для сегментации применена комбинированная функция потерь:
+- [threshold_appendix.csv](/Users/valeevrustemrafailevic/Projects/conveyor-defect-detection/results/teacher_revision/report_data/threshold_appendix.csv)
 
-`Loss = 0.6 * BCEWithLogitsLoss + 0.4 * DiceLoss`
+Основное качество обучения доказывается через:
 
-Причина:
+- `validation error`
+- лучшую эпоху
+- сравнение оптимизаторов
+- итоговые `Dice` и `IoU`
 
-- `BCE` считает попиксельную бинарную ошибку
-- при дефектах положительных пикселей мало, поэтому фон доминирует
-- `pos_weight` компенсирует дисбаланс классов
-- `DiceLoss` помогает лучше выделять форму дефекта
+## 3. Сравнение оптимизаторов
 
-Поэтому требование "BCE должна быть 0" некорректно: важнее, чтобы уменьшалась именно `validation error`, а метрики `Dice` и `IoU` росли.
+Были проверены несколько оптимизаторов и параметров обучения:
 
-## 4. Что улучшено в обучении
+- [optimizer_argument.csv](/Users/valeevrustemrafailevic/Projects/conveyor-defect-detection/results/teacher_revision/report_data/optimizer_argument.csv)
 
-- оптимизатор заменён на `AdamW`
-- добавлен `weight_decay`
-- добавлен `gradient clipping`
-- добавлен `scheduler`
-- добавлен `dropout` в глубоких слоях `U-Net`
-- лучшая модель сохраняется по минимуму `validation error`, а не по последней эпохе
+По исследованию лучший результат среди протестированных конфигураций дал:
 
-## 5. Итог по эксперименту bottle
+- `SGD, lr = 1e-2`
 
-Актуальные результаты лежат здесь:
+Сравнение:
 
-- [evaluation_summary.csv](/Users/valeevrustemrafailevic/Projects/conveyor-defect-detection/results/teacher_review/bottle/evaluation_summary.csv)
-- [prediction_table.csv](/Users/valeevrustemrafailevic/Projects/conveyor-defect-detection/results/teacher_review/bottle/prediction_table.csv)
+- `SGD`: `best_validation_error = 0.331616`
+- `AdamW (5e-4)`: `0.402278`
+- `Adam (5e-4)`: `0.408325`
+- `AdamW (1e-3)`: `0.426022`
+- `RMSprop (1e-4)`: `0.542996`
 
-Ключевые числа:
+Итог: выбор финальной конфигурации сделан не на глаз, а по сравнению нескольких вариантов.
 
-- `Best epoch`: 14
-- `Best validation loss`: 0.402278
-- `Dice`: 0.47287
-- `IoU`: 0.357095
+## 4. Что означают основные числа
+
+Подготовлен словарь показателей:
+
+- [metric_glossary.csv](/Users/valeevrustemrafailevic/Projects/conveyor-defect-detection/results/teacher_revision/report_data/metric_glossary.csv)
+
+Ключевые показатели:
+
+- `train_loss` — ошибка на обучающей выборке
+- `validation_error` — ошибка на validation
+- `best_epoch` — эпоха с минимальной validation error
+- `Dice` — качество перекрытия масок
+- `IoU` — более строгая метрика перекрытия
+- `learning_rate` — текущий шаг обучения
+
+## 5. Актуальный итог по bottle
+
+Итоговые файлы:
+
+- [evaluation_summary.csv](/Users/valeevrustemrafailevic/Projects/conveyor-defect-detection/results/teacher_revision/sgd_bottle/bottle/evaluation_summary.csv)
+- [split_info.json](/Users/valeevrustemrafailevic/Projects/conveyor-defect-detection/results/teacher_revision/sgd_bottle/bottle/split_info.json)
+
+Финальные числа:
+
+- `Dice = 0.538667`
+- `IoU = 0.42929`
+- `Threshold = 0.5`
+- `Best epoch = 11`
+- `Best validation loss = 0.380891`
 
 ## 6. Визуальные результаты
 
-- [example_01.png](/Users/valeevrustemrafailevic/Projects/conveyor-defect-detection/results/teacher_review/bottle/examples/example_01.png)
-- [example_02.png](/Users/valeevrustemrafailevic/Projects/conveyor-defect-detection/results/teacher_review/bottle/examples/example_02.png)
-- [example_03.png](/Users/valeevrustemrafailevic/Projects/conveyor-defect-detection/results/teacher_review/bottle/examples/example_03.png)
-- [example_04.png](/Users/valeevrustemrafailevic/Projects/conveyor-defect-detection/results/teacher_review/bottle/examples/example_04.png)
-- [example_05.png](/Users/valeevrustemrafailevic/Projects/conveyor-defect-detection/results/teacher_review/bottle/examples/example_05.png)
-- [example_06.png](/Users/valeevrustemrafailevic/Projects/conveyor-defect-detection/results/teacher_review/bottle/examples/example_06.png)
+Для защиты подготовлены:
 
-На каждом примере показаны:
+- примеры сегментации в `results/teacher_revision/sgd_bottle/bottle/examples/`
+- contact sheets в `results/final/defense/showcase_visuals/`
+- русские графики `validation error` по всем категориям в `results/teacher_revision/all_validation_graphs/`
 
-1. исходное изображение
-2. истинная маска
-3. предсказанная маска
-4. наложение маски на изображение
+## 7. Короткий вывод
 
-## 7. Короткий вывод для защиты
+Проект переведён в воспроизводимую учебную форму:
 
-В проекте реализована сегментация дефектов на основе `U-Net`.  
-Качество модели контролируется по `validation error`, обучение автоматически замедляется и останавливается при ухудшении валидации.  
-Для сегментации выбрана комбинированная функция ошибки `BCE + Dice`, так как она лучше работает при несбалансированных масках дефектов.  
-Итог подтверждается численными метриками и визуальными примерами сегментации.
+- одна основная модель `U-Net`
+- контроль качества через `validation error`
+- обоснование лучшей эпохи
+- сравнение оптимизаторов
+- численные метрики и визуальные примеры
+- единая showcase-задача в ClearML
